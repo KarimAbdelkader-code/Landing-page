@@ -8,8 +8,9 @@
     "start": "next start",
   "export": "next build",
     "lint": "bunx tsc --noEmit && next lint",
-    "predeploy": "npm run build && npm run export",
-    "deploy": "gh-pages -d out -b gh-pages",
+  "predeploy": "npm run build && npm run export",
+  "deploy": "gh-pages -d dist --branch gh-pages",
+  "deploy-2": "gh-pages -d dist",
     "format": "bunx biome format --write"
   },
   "dependencies": {
