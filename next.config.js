@@ -3,9 +3,8 @@ const nextConfig = {
   // Enable static HTML export output
   output: 'export',
 
-  // Remove basePath and assetPrefix since Pages serves from docs/ directly
-  // basePath: '/Landing-page',
-  // assetPrefix: '/Landing-page/',
+  // Set basePath for GitHub Pages subdirectory
+  basePath: '/Landing-page',
   // trailingSlash can help with static export and relative links
   trailingSlash: true,
 
