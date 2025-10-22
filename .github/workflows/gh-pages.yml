@@ -40,16 +40,16 @@ jobs:
       - name: Export static HTML
         run: npm run export
 
-      - name: Publish export to `main` branch `/docs` (for Pages from `main/docs`)
-        # This step copies the exported site into the repository `docs/` folder
-        # and pushes back to `main` using the provided GITHUB_TOKEN. The commit
+      - name: Publish export to `main` branch `/docs/Landing-page` (for Pages from `main/docs`)
+        # Copy the exported site into the repository `docs/Landing-page/` folder
+        # and push back to `main` using the provided GITHUB_TOKEN. The commit
         # includes `[skip ci]` so the workflow won't trigger again from this push.
         run: |
           set -e
           # ensure we have a clean working tree
           rm -rf docs || true
-          mkdir -p docs
-          cp -a out/. docs/
+          mkdir -p docs/Landing-page
+          cp -a out/. docs/Landing-page/
           # Configure git identity for the bot
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -62,9 +62,20 @@ jobs:
             git push origin HEAD:main
           fi
 
+      - name: Prepare deploy directory (publish under Landing-page/ on gh-pages)
+        run: |
+          set -e
+          rm -rf deploy || true
+          mkdir -p deploy/Landing-page
+          # copy exported files into deploy/Landing-page so the gh-pages branch
+          # will contain a `Landing-page/` subfolder matching next.config basePath
+          cp -a out/. deploy/Landing-page/
+          # create .nojekyll so files under _next/ are served
+          touch deploy/.nojekyll
+
       - name: Deploy to GitHub Pages (peaceiris)
         uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_dir: ./out
+          publish_dir: ./deploy
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
