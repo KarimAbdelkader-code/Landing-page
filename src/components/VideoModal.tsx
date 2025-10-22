@@ -78,7 +78,7 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
 
   return (
     <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 transition-all duration-500 ${
         isVisible && !isClosing 
           ? 'bg-black/90 backdrop-blur-sm opacity-100' 
           : 'bg-black/0 backdrop-blur-none opacity-0'
@@ -88,7 +88,7 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
       {/* Enhanced modal container */}
       <div 
         ref={containerRef} 
-        className={`relative w-full max-w-[1200px] max-h-[90vh] transition-all duration-500 transform ${
+        className={`relative w-full max-w-[90vw] sm:max-w-[1200px] max-h-[80vh] sm:max-h-[90vh] transition-all duration-500 transform ${
           isVisible && !isClosing 
             ? 'scale-100 translate-y-0 opacity-100' 
             : 'scale-95 translate-y-8 opacity-0'
@@ -96,10 +96,10 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Premium video container */}
-        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+        <div className="relative bg-black rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-white/10">
           <video
             ref={videoRef}
-            className="w-full h-full object-contain bg-black rounded-2xl"
+            className="w-full h-full object-contain bg-black rounded-xl sm:rounded-2xl"
             src={videoSrc}
             controls
             autoPlay
@@ -107,12 +107,12 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
           />
 
           {/* Enhanced control overlay */}
-          <div className={`absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent transition-all duration-300 ${
+          <div className={`absolute top-0 left-0 right-0 p-2 sm:p-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent transition-all duration-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}>
             {/* Premium progress bar */}
-            <div className="mb-4">
-              <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+            <div className="mb-3 sm:mb-4">
+              <div className="w-full h-0.5 sm:h-1 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
                 <div 
                   className="h-full bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] rounded-full transition-all duration-300 ease-out"
                   style={{ width: `${videoProgress}%` }}
@@ -139,10 +139,10 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
                 <button
                   aria-label="Toggle fullscreen"
                   onClick={toggleFullscreen}
-                  className="group relative bg-white/10 hover:bg-white/20 text-white rounded-xl p-3 transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20"
+                  className="group relative bg-white/10 hover:bg-white/20 text-white rounded-lg sm:rounded-xl p-2 sm:p-3 transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="relative z-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none">
                     {isFullscreen ? (
                       <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 0 2-2h3M3 16h3a2 2 0 0 0 2 2v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     ) : (
@@ -155,10 +155,10 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
                 <button
                   aria-label="Close video"
                   onClick={handleClose}
-                  className="group relative bg-red-500/20 hover:bg-red-500/30 text-white rounded-xl p-3 transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-red-500/30"
+                  className="group relative bg-red-500/20 hover:bg-red-500/30 text-white rounded-lg sm:rounded-xl p-2 sm:p-3 transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-red-500/30"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="relative z-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-transparent rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
@@ -167,14 +167,14 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
           </div>
 
           {/* Premium corner accents */}
-          <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white/30 rounded-tl-lg" />
-          <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white/30 rounded-tr-lg" />
-          <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white/30 rounded-bl-lg" />
-          <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white/30 rounded-br-lg" />
+          <div className="absolute top-2 sm:top-4 left-2 sm:left-4 w-6 h-6 sm:w-8 sm:h-8 border-l-2 border-t-2 border-white/30 rounded-tl-lg hidden sm:block" />
+          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 border-r-2 border-t-2 border-white/30 rounded-tr-lg hidden sm:block" />
+          <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 w-6 h-6 sm:w-8 sm:h-8 border-l-2 border-b-2 border-white/30 rounded-bl-lg hidden sm:block" />
+          <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 border-r-2 border-b-2 border-white/30 rounded-br-lg hidden sm:block" />
 
           {/* Floating decorative elements */}
-          <div className="absolute top-8 left-1/4 w-2 h-2 bg-[#E94E1B]/50 rounded-full animate-pulse" />
-          <div className="absolute bottom-8 right-1/4 w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" />
+          <div className="absolute top-8 left-1/4 w-2 h-2 bg-[#E94E1B]/50 rounded-full animate-pulse hidden sm:block" />
+          <div className="absolute bottom-8 right-1/4 w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce hidden sm:block" />
         </div>
 
         {/* Premium glow effect */}

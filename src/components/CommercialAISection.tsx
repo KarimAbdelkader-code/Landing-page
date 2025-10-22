@@ -5,50 +5,50 @@ import { ScrollReveal } from './ScrollReveal';
 
 export const CommercialAISection = () => {
   return (
-    <section className="py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-24 sm:py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Enhanced background */}
       <div className="absolute inset-0 bg-gradient-to-tr from-gray-100/50 to-transparent"></div>
-      <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#E94E1B]/5 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-[#E94E1B]/5 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl animate-float"></div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <ScrollReveal>
           <div className="max-w-4xl mx-auto">
             {/* Section header */}
-            <div className="text-center mb-16 animate-fade-in-up">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-gray-900/10 to-black/10 border border-gray-900/20 text-gray-900 text-sm font-medium mb-6">
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+              <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-gray-900/10 to-black/10 border border-gray-900/20 text-gray-900 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 Innovation Spotlight
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Powered by Advanced AI</h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Experience the future of customer intelligence with our cutting-edge AI platform</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Powered by Advanced AI</h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">Experience the future of customer intelligence with our cutting-edge AI platform</p>
             </div>
             
-            <div className="group bg-gradient-to-br from-black via-gray-900 to-black text-white rounded-3xl p-16 transform hover:scale-105 transition-all duration-700 hover:shadow-2xl hover:-translate-y-4 cursor-pointer overflow-hidden relative">
+            <div className="group bg-gradient-to-br from-black via-gray-900 to-black text-white rounded-2xl sm:rounded-3xl p-8 sm:p-16 transform hover:scale-105 transition-all duration-700 hover:shadow-2xl hover:-translate-y-4 cursor-pointer overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#E94E1B]/10 to-[#D43D0A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               
               {/* Animated background elements */}
-              <div className="absolute top-8 right-8 w-20 h-20 bg-gradient-to-br from-white/5 to-white/10 rounded-full animate-pulse"></div>
-              <div className="absolute bottom-8 left-8 w-16 h-16 bg-gradient-to-br from-[#E94E1B]/20 to-[#D43D0A]/20 rounded-full animate-float"></div>
-              <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-white/30 rounded-full animate-float-delay-1"></div>
-              <div className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-float-delay-2"></div>
+              <div className="absolute top-4 sm:top-8 right-4 sm:right-8 w-12 h-12 sm:w-20 sm:h-20 bg-gradient-to-br from-white/5 to-white/10 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-[#E94E1B]/20 to-[#D43D0A]/20 rounded-full animate-float"></div>
+              <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/30 rounded-full animate-float-delay-1 hidden sm:block"></div>
+              <div className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-float-delay-2 hidden sm:block"></div>
               
               <div className="relative z-10">
                 <div className="animate-fade-in-up">
-                  <h3 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent leading-tight">
+                  <h3 className="text-3xl sm:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent leading-tight">
                     The Commercial AI Era
                   </h3>
                 </div>
                 <div className="animate-fade-in-up delay-200">
-                  <p className="text-gray-300 mb-12 text-xl leading-relaxed max-w-2xl">
+                  <p className="text-gray-300 mb-8 sm:mb-12 text-lg sm:text-xl leading-relaxed max-w-2xl">
                     Discover Planhat's flexible, integrated and commercially rooted AI platform that transforms customer data into actionable business intelligence.
                   </p>
                 </div>
                 
                 {/* Feature highlights */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-fade-in-up delay-300">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 animate-fade-in-up delay-300">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-[#E94E1B] rounded-full"></div>
                     <span className="text-gray-300 text-sm">Intelligent Analytics</span>
@@ -64,10 +64,10 @@ export const CommercialAISection = () => {
                 </div>
                 
                 <div className="animate-fade-in-up delay-400">
-                  <button className="group/btn bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] text-white px-8 py-4 rounded-full hover:from-[#D43D0A] hover:to-[#C02D00] transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-semibold">
-                    <span className="flex items-center gap-2">
+                  <button className="group/btn bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-[#D43D0A] hover:to-[#C02D00] transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-semibold text-sm sm:text-base w-full sm:w-auto">
+                    <span className="flex items-center justify-center gap-2">
                       Explore AI Features
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="transform transition-transform duration-300 group-hover/btn:translate-x-1">
+                      <svg width="14" height="14" className="sm:w-4 sm:h-4 transform transition-transform duration-300 group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none">
                         <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </span>

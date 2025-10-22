@@ -46,12 +46,12 @@ export function ProductCards() {
           viewport={{ once: true }}
           transition={{ delay: index * 0.1, duration: 0.4 }}
           whileHover={{ scale: 1.02, x: 10 }}
-          className={`flex items-center gap-4 p-6 ${card.lightBg} rounded-2xl cursor-pointer transition-all`}
+          className={`flex items-center gap-3 sm:gap-4 p-4 sm:p-6 ${card.lightBg} rounded-2xl cursor-pointer transition-all`}
         >
-          <div className={`w-12 h-12 ${card.bgColor} rounded-full flex items-center justify-center`}>
+          <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.bgColor} rounded-full flex items-center justify-center`}>
             {card.icon}
           </div>
-          <span className="text-xl font-bold">{card.title}</span>
+          <span className="text-lg sm:text-xl font-bold">{card.title}</span>
         </motion.div>
       ))}
     </div>

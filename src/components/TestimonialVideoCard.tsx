@@ -95,9 +95,9 @@ export default function TestimonialVideoCard({ videoSrc, quote, author, role, co
           isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
         }`}>
           <div className="relative">
-            <div className="w-20 h-20 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-white/90 to-white/70 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-800 ml-1">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-white/90 to-white/70 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <svg width="20" height="20" className="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none">
                   <path d="M8 5v14l11-7z" fill="currentColor" />
                 </svg>
               </div>
@@ -109,19 +109,19 @@ export default function TestimonialVideoCard({ videoSrc, quote, author, role, co
         </div>
 
         {/* Enhanced content layout */}
-        <div className="relative h-full min-h-[500px]">
+        <div className="relative h-full min-h-[400px] sm:min-h-[500px]">
           <div className="md:flex md:items-center h-full">
             <div className="hidden md:block md:w-2/3" />
-            <div className="md:w-1/3 w-full p-6 md:p-12 lg:p-16 flex items-center">
+            <div className="md:w-1/3 w-full p-4 sm:p-6 md:p-12 lg:p-16 flex items-center">
               <div className="w-full">
                 {/* Premium testimonial card */}
-                <div className={`relative bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-xl text-gray-900 rounded-2xl p-8 md:p-10 shadow-2xl max-w-2xl ml-auto border border-white/50 transition-all duration-700 ${
+                <div className={`relative bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-xl text-gray-900 rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl max-w-2xl ml-auto border border-white/50 transition-all duration-700 ${
                   isHovered 
                     ? 'transform scale-105 shadow-3xl bg-gradient-to-br from-white via-white/95 to-gray-50/90' 
                     : 'transform scale-100'
                 }`}>
                   {/* Testimonial badge */}
-                  <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#E94E1B]/10 to-[#D43D0A]/10 border border-[#E94E1B]/20 text-[#E94E1B] text-xs font-semibold mb-6 transition-all duration-500 ${
+                  <div className={`inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#E94E1B]/10 to-[#D43D0A]/10 border border-[#E94E1B]/20 text-[#E94E1B] text-xs font-semibold mb-4 sm:mb-6 transition-all duration-500 ${
                     isHovered ? 'opacity-100 translate-y-0' : 'opacity-80 translate-y-1'
                   }`}>
                     <div className="w-2 h-2 bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] rounded-full mr-2 animate-pulse" />
@@ -129,16 +129,16 @@ export default function TestimonialVideoCard({ videoSrc, quote, author, role, co
                   </div>
 
                   {/* Quote with enhanced typography */}
-                  <div className="relative mb-8">
-                    <div className={`absolute -top-4 -left-2 text-6xl text-[#E94E1B]/20 font-serif transition-all duration-500 ${
+                  <div className="relative mb-6 sm:mb-8">
+                    <div className={`absolute -top-3 sm:-top-4 -left-1 sm:-left-2 text-4xl sm:text-6xl text-[#E94E1B]/20 font-serif transition-all duration-500 ${
                       isHovered ? 'opacity-100 scale-100' : 'opacity-60 scale-90'
                     }`}>"</div>
-                    <p className={`text-lg md:text-xl leading-relaxed font-medium relative z-10 transition-all duration-500 ${
+                    <p className={`text-base sm:text-lg md:text-xl leading-relaxed font-medium relative z-10 transition-all duration-500 ${
                       isHovered ? 'text-gray-900' : 'text-gray-800'
                     }`}>
                       {quote}
                     </p>
-                    <div className={`absolute -bottom-4 -right-2 text-6xl text-[#E94E1B]/20 font-serif rotate-180 transition-all duration-500 delay-100 ${
+                    <div className={`absolute -bottom-3 sm:-bottom-4 -right-1 sm:-right-2 text-4xl sm:text-6xl text-[#E94E1B]/20 font-serif rotate-180 transition-all duration-500 delay-100 ${
                       isHovered ? 'opacity-100 scale-100' : 'opacity-60 scale-90'
                     }`}>"</div>
                   </div>
@@ -147,7 +147,7 @@ export default function TestimonialVideoCard({ videoSrc, quote, author, role, co
                   <div className={`text-right transition-all duration-500 delay-200 ${
                     isHovered ? 'transform translate-y-0 opacity-100' : 'transform translate-y-1 opacity-90'
                   }`}>
-                    <p className="font-bold text-lg text-gray-900 mb-1">{author}</p>
+                    <p className="font-bold text-base sm:text-lg text-gray-900 mb-1">{author}</p>
                     {role && <p className="text-sm text-gray-600 font-medium">{role}</p>}
                     {company && (
                       <p className="text-sm font-semibold bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] bg-clip-text text-transparent">

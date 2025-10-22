@@ -74,7 +74,7 @@ export function LogoCarousel({
     >
       <div
         ref={containerRef}
-        className="flex gap-12 items-center whitespace-nowrap will-change-scroll"
+        className="flex gap-6 sm:gap-8 md:gap-12 items-center whitespace-nowrap will-change-scroll"
         style={{
           // prevent flex from wrapping; allow horizontal scroll
           overflowX: "auto",
@@ -83,7 +83,7 @@ export function LogoCarousel({
       >
         {logosDup.map((l, i) => (
           <div key={i} className="flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity">
-            <img src={l.src} alt={l.alt || "logo"} className="h-10 w-auto max-h-10" />
+            <img src={l.src} alt={l.alt || "logo"} className="h-6 sm:h-8 md:h-10 w-auto max-h-6 sm:max-h-8 md:max-h-10" />
           </div>
         ))}
       </div>

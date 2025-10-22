@@ -198,7 +198,7 @@ export default function ScrollingFeatureSection() {
       }`}>
           {/* Enhanced Left Content */}
           <div 
-            className={`w-1/2 p-16 flex flex-col justify-center transform transition-all duration-700 ease-out relative z-10 ${
+            className={`w-full md:w-1/2 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center transform transition-all duration-700 ease-out relative z-10 ${
               hasInitialScroll ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12 pointer-events-none'
             }`}
           >
@@ -207,23 +207,23 @@ export default function ScrollingFeatureSection() {
             
             <div className="max-w-2xl relative">
               {/* Enhanced header section */}
-              <div className={`transition-all duration-400 mb-12 ${
+              <div className={`transition-all duration-400 mb-8 sm:mb-12 ${
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 {/* Premium badge */}
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-white/60 to-white/40 border border-white/60 text-gray-700 text-sm font-medium mb-6 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer group">
-                  <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mr-3 animate-pulse group-hover:animate-none" />
+                <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-white/60 to-white/40 border border-white/60 text-gray-700 text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer group">
+                  <div className="w-2 sm:w-3 h-2 sm:h-3 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mr-2 sm:mr-3 animate-pulse group-hover:animate-none" />
                   <span className="tracking-wide uppercase font-semibold">Customer Journey Platform</span>
                 </div>
                 
-                <h3 className="text-4xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent leading-tight">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent leading-tight">
                   Unite your customer journey.
                 </h3>
                 
                 {/* Enhanced CTA */}
-                <button className="group relative bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] hover:from-[#D43D0A] hover:to-[#C02D00] text-white px-10 py-4 rounded-2xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl transform hover:-translate-y-2 overflow-hidden">
-                  <span className="relative z-10 flex items-center gap-3">
-                    <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                <button className="group relative bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] hover:from-[#D43D0A] hover:to-[#C02D00] text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-2xl font-semibold text-base sm:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl transform hover:-translate-y-2 overflow-hidden">
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
                     </svg>
                     Book a demo
@@ -274,11 +274,11 @@ export default function ScrollingFeatureSection() {
                     <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
                     
                     {/* Content */}
-                    <div className="relative p-6 rounded-2xl">
+                    <div className="relative p-4 sm:p-6 rounded-2xl">
                       {/* Icon and title */}
-                      <div className="flex items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                         <div 
-                          className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-lg sm:text-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
                           style={{ 
                             background: `linear-gradient(135deg, ${section.color}20, ${section.color}40)`,
                             border: `2px solid ${section.color}30`
@@ -287,7 +287,7 @@ export default function ScrollingFeatureSection() {
                           {section.icon}
                         </div>
                         <h4 
-                          className="text-2xl font-bold transition-all duration-300 group-hover:scale-105"
+                          className="text-lg sm:text-xl lg:text-2xl font-bold transition-all duration-300 group-hover:scale-105"
                           style={{ 
                             color: index === activeSection ? section.color : 'inherit'
                           }}
