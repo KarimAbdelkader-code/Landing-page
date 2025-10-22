@@ -20,11 +20,14 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install Bun
+        run: npm install -g bun
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and export (next build && next export)
-        run: npm run export
+      - name: Build static export
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
