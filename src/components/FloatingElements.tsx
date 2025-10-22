@@ -107,7 +107,7 @@ export const ProgressIndicator = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+    <div className="fixed top-0 left-0 w-full  bg-gray-200 z-50">
       <div
         className="h-full bg-gradient-to-r from-[#E94E1B] to-[#D43D0A] transition-all duration-300 ease-out"
         style={{ width: `${scrollProgress}%` }}
