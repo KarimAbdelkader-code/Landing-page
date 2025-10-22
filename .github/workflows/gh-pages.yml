@@ -50,6 +50,8 @@ jobs:
           rm -rf docs || true
           mkdir -p docs
           cp -a out/. docs/
+          # Add .nojekyll file so GitHub Pages serves files starting with underscore
+          touch docs/.nojekyll
           # Configure git identity for the bot
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
