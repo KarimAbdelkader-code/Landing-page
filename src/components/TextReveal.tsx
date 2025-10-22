@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 export function TextReveal({
   text,
@@ -28,9 +28,9 @@ export function TextReveal({
   stickySync?: boolean;
   scrollRange?: [number, number];
 }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: !stickySync, margin: "-50px" });
-  
+
   // For reliable rendering we split into words (or chars) and render explicit spaces between words.
   const words = split === "chars" ? text.split("") : text.split(/\s+/).filter(Boolean);
 
@@ -42,9 +42,9 @@ export function TextReveal({
 
   // Transform scroll progress to highlight index for sticky sync
   const highlightProgress = useTransform(
-    scrollYProgress, 
-    scrollRange, 
-    [0, words.length - 1]
+    scrollYProgress,
+    scrollRange,
+    [0, Math.max(0, words.length - 1)]
   );
 
   const getVariants = () => {
@@ -116,11 +116,11 @@ export function TextReveal({
 
   const containerVars = {
     hidden: {},
-    show: { 
-      transition: { 
-        staggerChildren: staggerDelay, 
-        delayChildren: delay 
-      } 
+    show: {
+      transition: {
+        staggerChildren: staggerDelay,
+        delayChildren: delay,
+      },
     },
   };
 
@@ -129,41 +129,45 @@ export function TextReveal({
     show: { opacity: 1 },
   };
 
-  const innerVars = getVariants();
-
-  // scroll-driven highlight state
-  const [highlightIdx, setHighlightIdx] = React.useState<number | null>(null);
-
-  React.useEffect(() => {
+  // Use DOM updates for scroll-driven highlighting (no React state updates) to reduce re-renders
+  useEffect(() => {
     if (!scrollHighlight) return;
-    
-    if (stickySync) {
-      // For sticky sync, use scroll progress directly
-      const unsubscribe = highlightProgress.onChange((latest) => {
-        const idx = Math.round(latest);
-        const clamped = Math.max(0, Math.min(words.length - 1, idx));
-        setHighlightIdx(clamped);
+    const root = ref.current as HTMLElement | null;
+    if (!root) return;
+
+    const setActiveIndex = (idx: number) => {
+      const children = Array.from(root.querySelectorAll<HTMLSpanElement>('.tr-word'));
+      const clamped = Math.max(0, Math.min(children.length - 1, idx));
+      children.forEach((el, i) => {
+        el.classList.toggle('active', i === clamped);
       });
-      
-      return unsubscribe;
+      root.setAttribute('data-highlight', String(clamped));
+    };
+
+    // Sticky sync: listen to framer motion derived transform value for reliable progress
+    if (stickySync) {
+      const unsub = highlightProgress.onChange((latest) => {
+        const idx = Math.round(latest);
+        setActiveIndex(idx);
+      });
+      // initial
+      setActiveIndex(0);
+      return () => unsub();
     }
-    
-    // Original container-based scroll logic for non-sticky behavior
+
+    // Non-sticky: compute from container scroll or viewport position
     if (!containerSelector) return;
     const container = document.querySelector(containerSelector) as HTMLElement | null;
     if (!container) return;
 
     let raf: number | null = null;
-    const highlightables = words;
 
     const computeFromContainer = () => {
-      // If the container itself can scroll, compute progress from its scrollTop
       if (container.scrollHeight > container.clientHeight) {
         const maxScroll = container.scrollHeight - container.clientHeight;
         const progress = Math.min(Math.max(container.scrollTop / Math.max(1, maxScroll), 0), 1);
         return progress;
       }
-      // Fallback: compute based on container position in viewport
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
       return Math.min(Math.max((vh - rect.top) / (rect.height + vh), 0), 1);
@@ -173,63 +177,56 @@ export function TextReveal({
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const progress = computeFromContainer();
-        const idx = Math.floor(progress * highlightables.length);
-        const clamped = Math.max(0, Math.min(highlightables.length - 1, idx));
-        setHighlightIdx(clamped);
+        const idx = Math.floor(progress * words.length);
+        setActiveIndex(idx);
       });
     };
 
-    // listen to both container scroll (for inner scroll areas) and window scroll/resize
-    container.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    container.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
 
-    // initial calc
+    // initial
     onScroll();
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
-      container.removeEventListener("scroll", onScroll as EventListener);
-      window.removeEventListener("scroll", onScroll as EventListener);
-      window.removeEventListener("resize", onScroll as EventListener);
+      container.removeEventListener('scroll', onScroll as EventListener);
+      window.removeEventListener('scroll', onScroll as EventListener);
+      window.removeEventListener('resize', onScroll as EventListener);
     };
-  }, [scrollHighlight, containerSelector, words.length, stickySync, highlightProgress, words]);
+  }, [scrollHighlight, containerSelector, words.length, stickySync, highlightProgress]);
 
   return (
-    <motion.span 
+    <motion.span
       ref={ref}
-      initial="hidden" 
-      animate={isInView ? "show" : "hidden"}
-      variants={containerVars} 
+      initial="hidden"
+      animate={isInView ? 'show' : 'hidden'}
+      variants={containerVars}
       className={className}
     >
       {words.map((w, i) => {
-        const isHighlighted = highlightIdx === i;
-        const baseClasses = "inline-block overflow-hidden align-middle transition-all duration-500";
-        const colorClass = scrollHighlight && isHighlighted 
-          ? "text-[#E94E1B] font-bold transform scale-110" 
-          : scrollHighlight 
-            ? "text-gray-400 font-normal" 
-            : "";
-        
+        // When using scrollHighlight, render lightweight DOM spans (no framer-motion per-word)
+        if (scrollHighlight) {
+          return (
+            <span
+              key={i}
+              role="text"
+              aria-hidden={false}
+              data-idx={i}
+              className={`tr-word inline-block transition-colors duration-300 ease-out text-gray-500`}>
+              <span className="inline-block will-change-transform">
+                {w}
+              </span>
+              {i < words.length - 1 ? <span aria-hidden="true">{"\u00A0"}</span> : null}
+            </span>
+          );
+        }
+
+        // Fallback: original framer-motion powered reveal
         return (
-          <motion.span 
-            key={i} 
-            variants={wordVars} 
-            className={`${baseClasses} ${colorClass}`}
-            whileHover={!scrollHighlight ? { 
-              scale: 1.05, 
-              color: "#E94E1B",
-              transition: { duration: 0.2 } 
-            } : {}}
-          >
-            <motion.span 
-              variants={innerVars} 
-              className="inline-block"
-              style={{
-                filter: scrollHighlight && isHighlighted ? "drop-shadow(0 0 8px rgba(233, 78, 27, 0.3))" : undefined
-              }}
-            >
+          <motion.span key={i} variants={wordVars} className="inline-block overflow-hidden align-middle">
+            <motion.span variants={getVariants()} className="inline-block">
               {w}
             </motion.span>
             {i < words.length - 1 ? <span aria-hidden="true">{"\u00A0"}</span> : null}
