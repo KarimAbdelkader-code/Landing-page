@@ -172,7 +172,7 @@ export default function Home() {
                     The unified customer platform for growing lifelong revenue through 
                     <span className="relative inline-block mx-2">
                       <span className="bg-gradient-to-r from-[#E94E1B] to-orange-400 bg-clip-text text-transparent font-medium">data-driven insights</span>
-                      <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#E94E1B] to-orange-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#E94E1B] to-orange-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 block"></span>
                     </span>
                     and intelligent automation.
                   </p>
