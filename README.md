@@ -40,14 +40,9 @@ Available scripts (may vary)
 - `src/lib/` — Utilities and helpers
 - `public/` — static assets
 
-## Contributing
-
-Open an issue or send a PR. Add tests and keep changes small and focused.
 
 ## License
 
 This project is licensed under the MIT License — see the `LICENSE` file for details.
 
 ---
-
-> Replace the project name and description in this README if you prefer a different repo name. If you'd like, I can update the README to use a different name/tagline you choose.
