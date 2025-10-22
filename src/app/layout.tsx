@@ -17,12 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Landing Page",
   description: "Landing page built with Next.js and Tailwind CSS",
-  icons: {
-    icon: [
-      { url: "/public/favicon.svg", type: "image/svg+xml" },
-      { url: "/public/favicon.ico", type: "image/x-icon" },
-    ],
-  },
+  
 };
 
 export default function RootLayout({
