@@ -24,8 +24,6 @@ export default function ScrollingFeatureSection() {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isInStickyZone, setIsInStickyZone] = useState(false);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-  const [titleWords, setTitleWords] = useState<string[]>([]);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   // Optimized sections with enhanced text splitting
   const sections: Section[] = useMemo(() => [
@@ -57,14 +55,6 @@ export default function ScrollingFeatureSection() {
       bgGradient: "from-purple-500/10 to-pink-500/10",
     },
   ], []);
-
-  // Enhanced title text with word animation
-  const titleText = "Unite your customer journey.";
-
-  // Initialize title words
-  useEffect(() => {
-    setTitleWords(titleText.split(' '));
-  }, []);
 
   // Optimized scroll handler with RAF and throttling
   const handleScroll = useCallback(() => {
@@ -98,7 +88,6 @@ export default function ScrollingFeatureSection() {
           setHasInitialScroll(false);
           setContentVisible(false);
           setActiveSection(0);
-          setCurrentWordIndex(0);
         }
         return;
       }
@@ -122,15 +111,6 @@ export default function ScrollingFeatureSection() {
         setIsScrollingUp(isScrollingUpNow);
       }
       lastScrollTop.current = scrollTop;
-
-      // Word-by-word animation based on scroll progress
-      const wordProgressStep = 1 / titleWords.length;
-      const wordIndex = Math.floor(normalizedProgress / wordProgressStep);
-      const clampedWordIndex = Math.min(Math.max(wordIndex, 0), titleWords.length - 1);
-      
-      if (clampedWordIndex !== currentWordIndex) {
-        setCurrentWordIndex(clampedWordIndex);
-      }
 
       // Optimized state transitions with better thresholds
       const shouldShowInitial = normalizedProgress >= 0.05;
@@ -156,7 +136,7 @@ export default function ScrollingFeatureSection() {
         setActiveSection(newActiveSection);
       }
     });
-  }, [sections.length, hasInitialScroll, contentVisible, activeSection, isInStickyZone, titleWords.length, currentWordIndex]);
+  }, [sections.length, hasInitialScroll, contentVisible, activeSection, isInStickyZone]);
 
   // Setup scroll listener with performance optimizations
   useEffect(() => {
@@ -196,28 +176,6 @@ export default function ScrollingFeatureSection() {
     }
     return false;
   }, []);
-
-  // Enhanced word component with improved animation
-  const AnimatedWord = ({ word, index, isActive }: { word: string; index: number; isActive: boolean }) => {
-    return (
-      <span
-        className={`inline-block transition-all ${isMobile ? 'duration-300' : 'duration-500'} ease-out ${
-          isActive 
-            ? 'text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 transform scale-110 drop-shadow-lg' 
-            : 'text-gray-800 transform scale-100'
-        } ${isMobile ? 'mobile-reduce-motion' : ''}`}
-        style={{
-          transitionDelay: `${index * (isMobile ? 50 : 100)}ms`,
-          filter: isActive ? 'brightness(1.2)' : 'brightness(1)',
-          textShadow: isActive ? '0 0 20px rgba(233, 78, 27, 0.3)' : 'none',
-          willChange: 'transform, color, filter',
-        }}
-      >
-        {word}
-        {index < titleWords.length - 1 && ' '}
-      </span>
-    );
-  };
 
   return (
     <div
@@ -311,16 +269,9 @@ export default function ScrollingFeatureSection() {
                 </span>
               </div>
 
-              {/* Enhanced title with word-by-word animation */}
-              <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6 leading-tight">
-                {titleWords.map((word, index) => (
-                  <AnimatedWord
-                    key={`${word}-${index}`}
-                    word={word}
-                    index={index}
-                    isActive={index <= currentWordIndex}
-                  />
-                ))}
+              {/* Enhanced title - now simplified without animation */}
+              <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6 leading-tight text-gray-800">
+                Unite your customer journey.
               </h3>
 
               {/* Enhanced CTA with better performance */}
