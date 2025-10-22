@@ -37,44 +37,32 @@ export function ScrollReveal({
     offset: ["start end", "end start"]
   });
 
+  // Prepare all possible transforms using hooks at top-level so rules-of-hooks are satisfied
+  const yUp = useTransform(scrollYProgress, scrollRange, [distance, 0]);
+  const yDown = useTransform(scrollYProgress, scrollRange, [-distance, 0]);
+  const xLeft = useTransform(scrollYProgress, scrollRange, [distance, 0]);
+  const xRight = useTransform(scrollYProgress, scrollRange, [-distance, 0]);
+  const scaleVal = useTransform(scrollYProgress, scrollRange, [0.8, 1]);
+  const opacityVal = useTransform(scrollYProgress, scrollRange, [0, 1]);
+
   const getScrollTransforms = () => {
     if (!stickySync) return {};
-    
+
     switch (direction) {
       case "up":
-        return {
-          y: useTransform(scrollYProgress, scrollRange, [distance, 0]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { y: yUp, opacity: opacityVal };
       case "down":
-        return {
-          y: useTransform(scrollYProgress, scrollRange, [-distance, 0]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { y: yDown, opacity: opacityVal };
       case "left":
-        return {
-          x: useTransform(scrollYProgress, scrollRange, [distance, 0]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { x: xLeft, opacity: opacityVal };
       case "right":
-        return {
-          x: useTransform(scrollYProgress, scrollRange, [-distance, 0]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { x: xRight, opacity: opacityVal };
       case "scale":
-        return {
-          scale: useTransform(scrollYProgress, scrollRange, [0.8, 1]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { scale: scaleVal, opacity: opacityVal };
       case "fade":
-        return {
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { opacity: opacityVal };
       default:
-        return {
-          y: useTransform(scrollYProgress, scrollRange, [distance, 0]),
-          opacity: useTransform(scrollYProgress, scrollRange, [0, 1])
-        };
+        return { y: yUp, opacity: opacityVal };
     }
   };
 

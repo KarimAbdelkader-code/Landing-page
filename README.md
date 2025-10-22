@@ -1,8 +1,8 @@
-# TryVipe
+
 
 A modern Next.js + TypeScript starter / marketing site built with Tailwind CSS and Framer Motion.
 
-> Short: TryVipe — Modern Next.js UI for data-driven products.
+> Short: Modern Next.js UI for data-driven products.
 
 This repository contains a production-focused front-end layout and component library optimized for fast iteration and beautiful interactions. It includes a modular component architecture, Tailwind utility classes, and Framer Motion animations.
 

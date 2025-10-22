@@ -78,7 +78,7 @@ export function LogoCarousel({
         style={{
           // prevent flex from wrapping; allow horizontal scroll
           overflowX: "auto",
-          scrollbarWidth: "none" as any,
+          scrollbarWidth: "none",
         }}
       >
         {logosDup.map((l, i) => (

@@ -193,7 +193,7 @@ export function TextReveal({
       window.removeEventListener("scroll", onScroll as EventListener);
       window.removeEventListener("resize", onScroll as EventListener);
     };
-  }, [scrollHighlight, containerSelector, words.length, stickySync, highlightProgress]);
+  }, [scrollHighlight, containerSelector, words.length, stickySync, highlightProgress, words]);
 
   return (
     <motion.span 

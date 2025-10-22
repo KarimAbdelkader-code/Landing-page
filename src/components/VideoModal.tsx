@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 type Props = {
   videoSrc: string;
@@ -14,6 +14,13 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
   const [isClosing, setIsClosing] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
+
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [onClose]);
 
   useEffect(() => {
     // Animate in
@@ -29,7 +36,7 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = 'unset';
     };
-  }, []);
+  }, [handleClose]);
 
   useEffect(() => {
     // try to autoplay when modal opens
@@ -42,12 +49,7 @@ export default function VideoModal({ videoSrc, onClose }: Props) {
     }
   }, []);
 
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  };
+  // handleClose defined above with useCallback
 
   const toggleFullscreen = async () => {
     const el = containerRef.current ?? videoRef.current;
