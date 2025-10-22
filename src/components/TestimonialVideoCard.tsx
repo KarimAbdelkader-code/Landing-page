@@ -112,7 +112,7 @@ export default function TestimonialVideoCard({ videoSrc, quote, author, role, co
         <div className="relative h-full min-h-[400px] sm:min-h-[500px]">
           <div className="md:flex md:items-center h-full">
             <div className="hidden md:block md:w-2/3" />
-            <div className="md:w-1/3 w-full p-4 sm:p-6 md:p-12 lg:p-16 flex items-center">
+            <div className="md:w-1/3 hidden md:flex w-full p-4 sm:p-6 md:p-12 lg:p-16 items-center">
               <div className="w-full">
                 {/* Premium testimonial card */}
                 <div className={`relative bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-xl text-gray-900 rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl max-w-2xl ml-auto border border-white/50 transition-all duration-700 ${
