@@ -3,9 +3,9 @@ const nextConfig = {
   // Enable static HTML export output
   output: 'export',
 
-  // change '/Landing-page' if your repo name differs
-  basePath: '/Landing-page',
-  assetPrefix: '/Landing-page/',
+  // Remove basePath and assetPrefix since Pages serves from docs/ directly
+  // basePath: '/Landing-page',
+  // assetPrefix: '/Landing-page/',
   // trailingSlash can help with static export and relative links
   trailingSlash: true,
 
